@@ -1,0 +1,8 @@
+# 忽略src/main.js的代码检测
+src/main.js
+
+# 忽略src/utils中所有代码的检测
+src/utils/*
+
+# 为了更好地学习语法，临时关闭ESLint
+src/*
