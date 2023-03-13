@@ -7,10 +7,11 @@ import {
     Select,
 } from 'antd';
 import React from 'react';
+import { useNavigate } from 'react-router';
+import { userRegister } from '../../utils/api';
 import './register.scss'
 
 const { Option } = Select;
-
 const residences = [
     {
         value: 'zhejiang',
@@ -73,8 +74,39 @@ const Register: React.FC = () => {
 
     const [form] = Form.useForm();
 
-    const onFinish = (values: any) => {
-        console.log('收到的表单值', values);
+    const Navigate = useNavigate()
+
+
+    const onFinish = (values: user_register_Info) => {
+        let value = JSON.stringify(values)
+
+        userRegister('/register', { value }).then(res => {
+            if (res.status >= 200 && res.status < 300) {
+                let { error_code, msg } = res.data;
+                console.log(error_code, msg)
+                alert(msg);
+                if (error_code === 0) {
+                    Navigate('/login')
+                }
+            }
+        })
+        // const xhr = new XMLHttpRequest();
+        // xhr.open('POST', 'http://localhost:8080/api/users/register');
+        // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+        // xhr.send(`values=${value}`);
+        // xhr.onreadystatechange = function () {
+        //     if (xhr.readyState === 4) {
+        //         if (xhr.status >= 200 && xhr.status < 300) {
+        //             let res = JSON.parse(xhr.responseText);
+        //             console.log(res);
+        //             let { error_code, msg } = res;
+        //             alert(msg);
+        //             if (error_code === 0) {
+        //                 Navigate('/login')
+        //             }
+        //         }
+        //     }
+        // }
     };
 
     const prefixSelector = (
@@ -102,12 +134,12 @@ const Register: React.FC = () => {
                     scrollToFirstError
                 >
                     <Form.Item
-                        name="Nickname"
+                        name="username"
                         label="用户名"
                         tooltip="What do you want others to call you?"
                         rules={[{ required: true, message: '请输入您的昵称!', whitespace: true }]}
                     >
-                        <Input />
+                        <Input autoComplete="username" />
                     </Form.Item>
 
                     <Form.Item
@@ -121,7 +153,7 @@ const Register: React.FC = () => {
                         ]}
                         hasFeedback
                     >
-                        <Input.Password autoComplete="new-password"/>
+                        <Input.Password autoComplete="current-password" />
                     </Form.Item>
 
                     <Form.Item
@@ -144,7 +176,7 @@ const Register: React.FC = () => {
                             }),
                         ]}
                     >
-                        <Input.Password autoComplete="new-password"/>
+                        <Input.Password autoComplete="new-password" />
                     </Form.Item>
 
                     <Form.Item
@@ -217,7 +249,7 @@ const Register: React.FC = () => {
                             我已阅读 <a href="">协议</a>
                         </Checkbox>
                     </Form.Item>
-                    
+
                     <Form.Item {...tailFormItemLayout}>
                         <Button type="primary" htmlType="submit">
                             注册

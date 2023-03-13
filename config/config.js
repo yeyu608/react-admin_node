@@ -2,6 +2,8 @@ const { merge } = require('webpack-merge');
 const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 
 const serve = require('./serve.js')
 const build = require('./build.js');
@@ -12,7 +14,7 @@ const resolve = arg => {
 
 const config = {
     entry: {
-        venders: ['react', 'react-dom', 'react-router-dom'],
+        venders: ['react', 'react-dom', 'react-router-dom','antd'],
         app: {
             import: resolve('src/main.js'),
             dependOn: 'venders'
@@ -34,7 +36,8 @@ const config = {
             handler(percentage, message) {
                 console.info(`${Math.floor(percentage * 100)}% ：${message}`)
             }
-        })
+        }),
+        new MiniCssExtractPlugin(),
     ],
     module: {
         rules: [
@@ -51,9 +54,6 @@ const config = {
                 use: [
                     {
                         loader: "thread-loader",
-                        options: {
-                            workers: 6
-                        }
                     },
                     {
                         loader: "babel-loader",
@@ -74,11 +74,26 @@ const config = {
                     }
                 ]
             }
-        ]
+        ],
+    },
+    optimization: {
+        minimizer:[
+            new CssMinimizerPlugin()
+        ],
+        splitChunks:{
+            chunks:'all',
+            name:'common'
+        }
     },
     resolve: {
         alias: {
-            "@": resolve('src')
+            "@": resolve('src'),
+            "url":false,
+            "http":false,
+            "https":false,
+            "stream":false,
+            "assert":false,
+            "zlib": false
         },
         // 允许忽略后缀
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
