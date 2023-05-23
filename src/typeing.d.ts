@@ -16,12 +16,12 @@ interface user_login_Info {
 }
 
 interface routers {
-    id: number;
+    id: string;
     text: string;
     path: string;
     icon?: any;
     element: any;
-    children?: any;
+    children?: Array<routers>;
 }
 
 

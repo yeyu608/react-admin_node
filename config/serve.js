@@ -5,8 +5,10 @@ module.exports = {
     devtool:"inline-source-map",
     devServer:{
         port: 3000,
-        hot: true,
+        hot: true, // 本地代码热更新
         open: true,
+        historyApiFallback: true,
+        //devServer 浏览器中的覆盖层
         client:{
             overlay:{
                 errors:true,
