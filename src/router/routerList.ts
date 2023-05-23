@@ -1,22 +1,40 @@
-import React from 'react';
+import React, { Children } from 'react';
 import loadable from "@loadable/component";
 
+import {
+    DesktopOutlined,
+    FileOutlined,
+    PieChartOutlined,
+    TeamOutlined,
+    UserOutlined,
+    MenuUnfoldOutlined,
+    MenuFoldOutlined
+  } from '@ant-design/icons';
 
 const Register = loadable(() => import('../pages/Register'))
 
 const Login = loadable(() => import('../pages/Login'))
 
-export const routes: Array<routers> = [
+const routes: Array<routers> = [
     {
         id: 1,
         text: '登录',
         path: 'register',
-        element: React.lazy(()=>import('../pages/register'))
+        element: loadable(() => import('../pages/Register'))
     },
     {
         id: 2,
         text: '注册',
-        path: 'login',
-        element: Login
+        path: '/',
+        element: loadable(() => import('../pages/Login'))
+    }
+    {
+        id: 3,
+        text: '首页',
+        path: 'home',
+        element: loadable(() => import('../layout')),
+        
     }
 ]
+
+export default routes

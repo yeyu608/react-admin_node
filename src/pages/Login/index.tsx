@@ -22,7 +22,7 @@ const Login: React.FC = () => {
                 console.log(error_code, msg)
                 alert(msg);
                 if (error_code === 0) {
-                    Navigate('/home')
+                    Navigate('/homepage')
                 }
             }
         })
