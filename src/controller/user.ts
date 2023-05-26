@@ -80,15 +80,15 @@ module.exports = {
         }
         resinfo(res, 2, '用户名或密码错误！')
     },
-    info:(req, res) => {
+    info: (req, res) => {
         res.setHeader("Access-Control-Allow-Origin", "*")
         let token = req.headers.authorization
         console.log(token)
         res.send(token)
     },
-    chunk: async (req,res) => {
+    chunk: async (req, res) => {
         res.setHeader("Access-Control-Allow-Origin", "*")
         console.log(req.body)
-        res.send({fileExists: true,uploadedChunks:0})
+        res.send({ fileExists: true, uploadedChunks: 0 })
     }
 }
