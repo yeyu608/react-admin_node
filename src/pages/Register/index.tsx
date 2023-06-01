@@ -80,7 +80,7 @@ const Register: React.FC = () => {
     const onFinish = (values: user_register_Info) => {
         let value = JSON.stringify(values)
 
-        userRegister('/register', { value }).then(res => {
+        userRegister('/register', { value },'USER').then(res => {
             if (res.status >= 200 && res.status < 300) {
                 let { error_code, msg } = res.data;
                 console.log(error_code, msg)

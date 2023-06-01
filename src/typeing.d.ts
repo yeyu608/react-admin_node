@@ -20,7 +20,7 @@ interface routers {
     text: string;
     path: string;
     icon?: any;
-    element: any;
+    element?: any;
     children?: Array<routers>;
 }
 

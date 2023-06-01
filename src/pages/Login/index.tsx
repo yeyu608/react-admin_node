@@ -15,13 +15,14 @@ const Login: React.FC = () => {
         const { username, password } = values
 
 
-        userLogin('/login', { username, password }).then((res:any )=> {
+        userLogin('/login', { username, password },'USER').then((res:any )=> {
             if (res.status >= 200 && res.status < 300) {
                 console.log(res)
                 let { error_code, msg } = res.data;
                 console.log(error_code, msg)
                 alert(msg);
                 if (error_code === 0) {
+                    localStorage.setItem('user', JSON.stringify(res.data.data))
                     Navigate('/home')
                 }
             }

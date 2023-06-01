@@ -1,0 +1,40 @@
+.song_list {
+    display: flex;
+    justify-content: flex-start;
+    flex-flow: row wrap;
+
+    .song-cold {
+        width: calc((100% - 60px)/4);
+        margin: 0 20px 25px 0;
+        border-radius: 5px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 5px 3px 16px rgba(0, 0, 0, .1);
+
+        &:nth-child(4n) {
+            margin-right: 0px
+        }
+
+        &::before{
+            display: block;
+            content: "";
+            width: 100%;
+            padding-bottom: 40%;
+        }
+
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40%;
+        }
+        .song-text{
+            position: absolute;
+            top: 0;
+            left: 40%;
+            width: 60%;
+            padding-left: 5px;
+        }
+    }
+
+}

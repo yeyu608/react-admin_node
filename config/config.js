@@ -14,7 +14,7 @@ const resolve = arg => {
 
 const config = {
     entry: {
-        venders: ['react', 'react-dom', 'react-router-dom','antd'],
+        venders: ['react', 'react-dom', 'react-router-dom', 'antd'],
         app: {
             import: resolve('src/main.js'),
             dependOn: 'venders'
@@ -24,6 +24,7 @@ const config = {
         path: resolve('dist'),
         filename: 'js/[name].[chunkhash].js',
         clean: true,
+        publicPath: '/',
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -65,11 +66,11 @@ const config = {
             {
                 test: /\.(ts|tsx)$/i,
                 include: path.resolve('src'),
-                use:[
+                use: [
                     {
-                        loader:'ts-loader',
-                        options:{
-                            happyPackMode:true
+                        loader: 'ts-loader',
+                        options: {
+                            happyPackMode: true
                         }
                     }
                 ]
@@ -77,22 +78,22 @@ const config = {
         ],
     },
     optimization: {
-        minimizer:[
+        minimizer: [
             new CssMinimizerPlugin()
         ],
-        splitChunks:{
-            chunks:'all',
-            name:'common'
+        splitChunks: {
+            chunks: 'all',
+            name: 'common'
         }
     },
     resolve: {
         alias: {
             "@": resolve('src'),
-            "url":false,
-            "http":false,
-            "https":false,
-            "stream":false,
-            "assert":false,
+            "url": false,
+            "http": false,
+            "https": false,
+            "stream": false,
+            "assert": false,
             "zlib": false
         },
         // 允许忽略后缀
