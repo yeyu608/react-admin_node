@@ -48,5 +48,8 @@ interface IChunk {
     cancel: () => void;
 }
 
+
+type MenuItem = Required<MenuProps>['items'][number];
+
 declare module 'spark-md5';
 

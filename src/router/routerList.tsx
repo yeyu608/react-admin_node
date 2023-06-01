@@ -40,19 +40,19 @@ const routes: Array<routers> = [
                         id: '31-1',
                         text: '歌单',
                         path: 'songlist',
-                        element: lazyLoad(2, 'RecommendedSongList')
+                        element: lazyLoad(1, 'RecommendedSongList')
                     },
                     {
                         id: '31-2',
                         text: '个人推荐',
                         path: 'personalrec',
-                        element: lazyLoad(2, 'RecommendedSongList')
+                        element: lazyLoad(1, 'Personalrec')
                     },
                     {
                         id: '31-3',
                         text: '热门歌曲',
                         path: 'ppularsongs',
-                        element: lazyLoad(2, 'RecommendedSongList')
+                        element: lazyLoad(1, 'Hotsongs')
                     }
 
                 ]

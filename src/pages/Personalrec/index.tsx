@@ -2,7 +2,7 @@ import React from 'react'
 
 const Personalrec = () {
     return (
-        <div>index</div>
+        <div>个性推荐</div>
     )
 }
 

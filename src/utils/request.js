@@ -16,8 +16,8 @@ let cancel
 // 请求拦截
 instance.interceptors.request.use(
     config => {
-        if(localStorage.getItem('user')){
-            let token = localStorage.getItem('user').token
+        if(sessionStorage.getItem('user')){
+            let token = sessionStorage.getItem('user').token
             token && (config.headers.Authorization = token)
         }
        
@@ -29,7 +29,7 @@ instance.interceptors.request.use(
             case 'STREAM':
                 config.url = baseURL1 + config.url
         }
-        console.log(config)
+       // console.log(config)
         // 取消重复请求
         if (cancel) { cancel("取消重复请求") }
 

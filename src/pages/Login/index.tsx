@@ -22,8 +22,10 @@ const Login: React.FC = () => {
                 console.log(error_code, msg)
                 alert(msg);
                 if (error_code === 0) {
-                    localStorage.setItem('user', JSON.stringify(res.data.data))
-                    Navigate('/home')
+                    sessionStorage.setItem('user', JSON.stringify(res.data.data))
+                    if(res.data.data.token){
+                        Navigate('/home')
+                    }
                 }
             }
         })
